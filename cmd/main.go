@@ -29,10 +29,12 @@ func main() {
 		panic(err)
 	}
 	defer conn.Close(ctx)
+	
 	slog.Info("connected to database sucessfully!")
 
 	api := application{
 		config: cfg,
+		db: conn,
 	}
 
 	h := api.mount()
