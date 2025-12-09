@@ -9,6 +9,7 @@ import (
 
 type Service interface{
 	ListProducts(ctx context.Context) ([]repo.Product,error)
+	GetProductById(ctx context.Context,id int)(repo.Product,error)
 
 
 } 
@@ -27,5 +28,9 @@ func NewService(repo repo.Querier)Service{
 
 func (s *svc) ListProducts(ctx context.Context) ([]repo.Product,error){
 	return s.repo.ListProducts(ctx)
+}
+
+func (s *svc) GetProductById(ctx context.Context,id int) (repo.Product,error){
+	return s.repo.FindProductById(ctx,int64(id))
 }
 
